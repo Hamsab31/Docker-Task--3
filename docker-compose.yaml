@@ -1,11 +1,12 @@
-version: "3.8"
+version: "3.9"
+
 services:
-  nginx:
+  web:
+    build: .                     # This tells Docker to build from the Dockerfile in current folder
     image: h4meed/nginx-custom:latest
-    # if you want to build on the target machine instead, replace 'image' with:
-    # build: .
     ports:
       - "80:80"
     volumes:
-      - ./site:/var/opt/nginx/html:rw     # host ./site mapped to container /var/opt/nginx/html
-    restart: unless-stopped
+      - ./index.html:/var/opt/nginx/index.html
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
