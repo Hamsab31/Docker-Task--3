@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  nginx:
+    image: h4meed/nginx-custom:latest
+    # if you want to build on the target machine instead, replace 'image' with:
+    # build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./site:/var/opt/nginx/html:rw     # host ./site mapped to container /var/opt/nginx/html
+    restart: unless-stopped
